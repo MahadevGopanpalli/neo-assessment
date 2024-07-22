@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="heading">
+      <h1>{{ isEditMode ? 'Edit User' : 'Add New User' }}</h1>
+    </div>
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()" class="user-form">
+      <div class="form-group text-center mb-4">
+        <input type="file" #fileInput (change)="onFileSelected($event)" class="d-none" />
+        <div class="profile-wrapper" (click)="fileInput.click()">
+          <img [src]="profileImage || 'assets/blankP.webp'" alt="Profile" class="profile-img" />
+          <div class="overlay">Add Profile Pic</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" class="form-control" placeholder="Enter name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" class="form-control" placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" formControlName="gender" class="form-control">
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="about">About</label>
+        <textarea id="about" formControlName="about" class="form-control" placeholder="Enter about"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="strength">Strength</label>
+        <div formArrayName="strength" class="strength-list">
+          <div *ngFor="let s of strength.controls; let i = index" class="strength-item">
+            <input [formControlName]="i" class="form-control strength-input" placeholder="Enter strength" />
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeStrength(i)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-primary add-strength-btn" (click)="addStrength()">Add Strength</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success submit-btn">{{ isEditMode ? 'Update User' : 'Add User' }}</button>
+    </form>
+  </div>
+  

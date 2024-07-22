@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <div class="d-flex w-100 justify-content-between align-items-center">
+      <!-- Left-aligned item -->
+      <span class="navbar-text d-flex align-items-center">
+        <ng-container *ngIf="currentUser?.profile; else defaultProfile">
+          <img [src]="currentUser?.profile" alt="Profile" class="profile-img">
+        </ng-container>
+        <ng-template #defaultProfile>
+          <img src="assets/blankP.webp" alt="Profile" class="profile-img">
+          <!-- <span class="profile-emoji">😊</span> -->
+        </ng-template>
+        {{ currentUser?.name }}
+      </span>
+      <!-- Right-aligned item -->
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>

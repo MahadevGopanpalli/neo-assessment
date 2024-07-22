@@ -1,0 +1,34 @@
+.profile-wrapper {
+    position: relative;
+    display: inline-block; /* Use inline-block to avoid affecting layout */
+    width: 100px; /* Set width to ensure circular size */
+    height: 100px; /* Set height to ensure circular size */
+  }
+  
+  .profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .profile-wrapper:hover .overlay {
+    opacity: 1;
+  }
+  

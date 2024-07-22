@@ -1,0 +1,41 @@
+<div class="modal fade show d-block" id="verifyCodeModal" tabindex="-1" aria-labelledby="verifyCodeModalLabel" aria-hidden="true" style="background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="verifyCodeModalLabel">Enter Verification Code</h5>
+          <button type="button" class="btn-close" (click)="closeDialog()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small">Verification code is sent to this email: {{ email }}</p>
+          <form [formGroup]="codeForm" (ngSubmit)="verifyCode()">
+            <div class="mb-3">
+              <label for="verificationCode" class="form-label">Verification Code</label>
+              <input type="text" formControlName="code" class="form-control" id="verificationCode" placeholder="Enter the code sent to your email">
+              <div *ngIf="codeForm.get('code').invalid && (codeForm.get('code').dirty || codeForm.get('code').touched)" class="text-danger">
+                <div *ngIf="codeForm.get('code').errors?.required">Code is required</div>
+              </div>
+            </div>
+            <div class="mb-3" *ngIf="!resendEnabled">
+                <div class="countdown-container">
+                    <p *ngIf="!resendEnabled" class="text-muted small countdown-text">
+                      🕒 Take a breather! You can ask for a new code in 
+                    </p>
+                    <countdown *ngIf="!resendEnabled"
+                      [config]="{ leftTime: countdownTime, format: 'm:ss' }"
+                      (event)="onCountdownEvent($event)">
+                    </countdown>
+                  </div>
+              </div>
+            <div class="mb-3" *ngIf="resendEnabled">
+              <button type="button" class="btn btn-secondary" (click)="resendCode()">Resend Code</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+              <button type="submit" class="btn btn-primary" [disabled]="codeForm.invalid">Verify</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

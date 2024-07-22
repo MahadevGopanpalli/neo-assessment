@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <div class="header-container d-flex justify-content-between align-items-center">
+    <h2 class="mb-0">Dashboard</h2>
+    <button class="btn btn-primary" *ngIf="isAdmin()" (click)="navigateToAddUser()">Add User</button>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="d-flex flex-column flex-sm-row align-items-center mb-3">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control mb-2 mb-sm-0 mr-sm-2">
+        <select [(ngModel)]="searchField" class="form-control mb-2 mb-sm-0 mr-sm-2">
+          <option value="name">Name</option>
+          <option value="email">Email</option>
+          <option value="gender">Gender</option>
+          <option value="about">About</option>
+          <option value="strength">Strength</option>
+        </select>
+        <button class="btn btn-secondary mb-2 mb-sm-0 mr-sm-2" (click)="applyFilter()">Search</button>
+        <button class="btn btn-outline-secondary mb-2 mb-sm-0" (click)="clearFilter()">Clear</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th (click)="sortBy('name')">
+                Name
+                <span [ngClass]="{'sort-arrow': true, 'asc': sortColumn === 'name' && sortDirection === 'asc', 'desc': sortColumn === 'name' && sortDirection === 'desc'}"></span>
+              </th>
+              <th (click)="sortBy('email')">
+                Email
+                <span [ngClass]="{'sort-arrow': true, 'asc': sortColumn === 'email' && sortDirection === 'asc', 'desc': sortColumn === 'email' && sortDirection === 'desc'}"></span>
+              </th>
+              <th>
+                Gender
+              </th>
+              <th>
+                About
+              </th>
+              <th>
+                Strength
+              </th>
+              <th>
+                Type
+              </th>
+              <th *ngIf="isAdmin()">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: size, currentPage: page, totalItems: totalUsers }">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.gender }}</td>
+              <td>{{ user.about }}</td>
+              <td>{{ user.strength }}</td>
+              <td>{{ user.sm | titlecase }}</td>
+              <td *ngIf="isAdmin()">
+                <button class="btn btn-warning btn-sm" (click)="navigateToEditUser(user._id)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteUser(user._id)">Delete</button>
+              </td>
+            </tr>
+            <tr *ngIf="users.length === 0">
+              <td colspan="6" class="text-center">No users found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+    </div>
+  </div>
+</div>

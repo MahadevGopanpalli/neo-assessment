@@ -1,0 +1,49 @@
+.container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .btn-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+  .countdown-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between text and countdown */
+  }
+  
+  .countdown-text {
+    margin: 0; /* Remove default margin if needed */
+    font-size: 0.9rem; /* Adjust text size as needed */
+    font-style: italic; /* Styling text as italic if needed */
+  }
+  
+  countdown {
+    font-size: 1rem; /* Adjust font size of countdown if needed */
+  }
+  
+  .verification-message {
+    font-size: 0.875rem; /* Smaller font size, 14px */
+    color: #6c757d; /* Bootstrap's text-muted color */
+    margin-bottom: 1rem; /* Spacing below the paragraph */
+  }
+  
