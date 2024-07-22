@@ -1,0 +1,32 @@
+# Backend specific ignores
+/backend/node_modules/
+/backend/.env
+/backend/.eslintrc.js
+/backend/.babelrc
+/backend/uploads/
+/backend/.vscode/
+
+# Frontend specific ignores
+/frontend/node_modules/
+/frontend/.env
+/frontend/.eslintrc.js
+/frontend/.babelrc
+/frontend/uploads/
+/frontend/.vscode/
+frontend/dist/
+/frontend/.browserslistrc
+/frontend/.editorconfig
+/frontend/karma.conf.js
+/frontend/package-lock.json
+/frontend/tsconfig.spec.json
+/frontend/.git/
+/frontend/proxy.conf.json
+/frontend/tsconfig.app.json
+/frontend/tsconfig.json
+/frontend/tslint.json
+/frontend/e2e/
+/frontend/angular.json
+
+# General ignores
+/.git/
+!.gitignore
