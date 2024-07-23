@@ -21,6 +21,7 @@ import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { PasswordResetComponent } from './view/passwordreset/passwordreset.component';
 import { SharedModule } from './shared/shared.module';
 import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } fro
           providers: [
             {
               id: FacebookLoginProvider.PROVIDER_ID,
-              provider: new FacebookLoginProvider('1131911711215099')
+              provider: new FacebookLoginProvider(environment.facebookId)
             }
           ],
           onError: (err) => {

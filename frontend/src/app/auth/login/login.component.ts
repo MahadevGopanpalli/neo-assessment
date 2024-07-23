@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginWithGithub()
   }
   loginWithFacebook() {
-    console.log('Logging in with Facebook');
+    console.log('Logging in with FacebookNew');
     // this.authService.loginWithFacebook()
     this.authService.getAuthState();
     this.authService.loginWithFacebook().then(user => {

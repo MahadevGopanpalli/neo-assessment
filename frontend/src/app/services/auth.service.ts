@@ -45,11 +45,13 @@ export class AuthService {
 
 
   loginWithGoogle() {
+    console.log("Logging in : ",`${this.apiUrl}/auth/google`)
     // return this.http.get(`${this.apiUrl}/auth/google`,{ withCredentials: true });
     window.open(`${this.apiUrl}/auth/google`, "_self");
   }
 
   loginWithGithub() {
+    console.log("Logging in : ",`${this.apiUrl}/auth/github`)
     // return this.http.get(`${this.apiUrl}/auth/google`,{ withCredentials: true });
     window.open(`${this.apiUrl}/auth/github`, "_self");
   }

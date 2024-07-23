@@ -6,7 +6,7 @@ require('dotenv').config();
 const User = require('../models/user'); 
 const { generateRandomCode } = require("../config/utilities")
 const emailQueue = require('../config/emailQueue'); 
-const UserService = require('../services/userService');
+const UserService = require('./userService');
  
 const JWT_SECRET = process.env.JWT_SECRET || 'Testing18';
 
@@ -15,13 +15,13 @@ class AuthService {
     async login(body) {
         try {
           let { email, password } = body;
-          email = email ? email : `${body.name.replace(/\s/g,'')}@neodev.com`;
+          email = email ? email : `${body.name.replace(/\s/g,'').toLowerCase()}@neodev.com`;
           let user = await User.findOne({ email, isDeleted : false }).lean();
           if(body.provider=='FACEBOOK' && !user)
           {
               let obj = {
                 name : body.name,
-                email : `${body.name.replace(/\s/g,'')}@neodev.com`,
+                email : email,
                 profile : body.response.picture.data.url,
                 sm : 'facebook',
                 smId : body.id,
