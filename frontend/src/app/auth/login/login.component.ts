@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit {
         }
         else if(response.status==2)
         {
-          this.sendVerification(response?.data?.userData?.email);
+          this.toastr.error(response.msg,'Error');
+          this.sendVerification({ email: response?.data?.userData?.email, from : "verify" });
         }
         else
         {
@@ -138,20 +139,19 @@ export class LoginComponent implements OnInit {
   {
     if (this.loginForm.get('email').valid) {
       const email = this.loginForm.get('email').value;
-          this.sendVerification(email);
+          this.sendVerification({ email: email, from : "forgot" });
     } 
     else {
       this.toastr.error('Please enter a valid email address.', 'Error');
     }
   }
 
-  sendVerification(email)
+  sendVerification(obj)
   {
-    this.authService.resendVerificationCode({email : email}).subscribe(
+    this.authService.resendVerificationCode(obj).subscribe(
       res => {
         if (res.status === 0) {
-          this.toastr.success('Verification code resent', 'Success');
-          this.openVerifyModal({ email: email, from : "forgot" })
+          this.openVerifyModal(obj)
         } else {
           this.toastr.error(res.msg, 'Error');
         }

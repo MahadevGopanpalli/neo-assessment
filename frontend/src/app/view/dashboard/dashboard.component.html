@@ -6,16 +6,16 @@
   </div>
   <div class="row mt-4">
     <div class="col-12">
-      <div class="d-flex flex-column flex-sm-row align-items-center mb-3">
-        <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control mb-2 mb-sm-0 mr-sm-2">
-        <select [(ngModel)]="searchField" class="form-control mb-2 mb-sm-0 mr-sm-2">
+      <div class="d-flex flex-column flex-sm-row align-items-center mb-3 justify-content-between">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." style="margin-right: 6px;" class="form-control mb-2 mb-sm-0 mr-sm-2">
+        <select [(ngModel)]="searchField" class="form-control mb-2 mb-sm-0 mr-sm-2 select-dropdown">
           <option value="name">Name</option>
           <option value="email">Email</option>
           <option value="gender">Gender</option>
           <option value="about">About</option>
           <option value="strength">Strength</option>
         </select>
-        <button class="btn btn-secondary mb-2 mb-sm-0 mr-sm-2" (click)="applyFilter()">Search</button>
+        <button class="btn btn-secondary mb-2 mb-sm-0 mr-sm-2 search-btn" (click)="applyFilter()">Search</button>
         <button class="btn btn-outline-secondary mb-2 mb-sm-0" (click)="clearFilter()">Clear</button>
       </div>
       <div class="table-responsive">
@@ -54,7 +54,7 @@
               <td>{{ user.strength }}</td>
               <td>{{ user.sm | titlecase }}</td>
               <td *ngIf="isAdmin()">
-                <button class="btn btn-warning btn-sm" (click)="navigateToEditUser(user._id)">Edit</button>
+                <button class="btn btn-warning btn-sm search-btn" (click)="navigateToEditUser(user._id)">Edit</button>
                 <button class="btn btn-danger btn-sm" (click)="deleteUser(user._id)">Delete</button>
               </td>
             </tr>

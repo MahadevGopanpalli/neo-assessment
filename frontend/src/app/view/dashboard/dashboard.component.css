@@ -56,6 +56,17 @@
   text-align: center;
 }
 
+.select-dropdown
+  {
+    width: 30%;
+    margin-right: 6px;
+  }
+
+  .search-btn
+  {
+    margin-right: 6px;
+  }
+
 /* Responsive utilities */
 @media (max-width: 576px) {
   .header-container {
@@ -70,5 +81,10 @@
 
   .d-flex {
     flex-direction: column;
+  }
+  
+  .select-dropdown
+  {
+    width: 100%;
   }
 }
